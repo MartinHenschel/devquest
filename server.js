@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const repo = require('./repository');
 
 const app = express();
 
@@ -40,7 +41,7 @@ app.post('/cadastro', (req, res) => {
     email,
     senha,
     xp: 0
-  };
+  }
 
   usuarios.push(novoUsuario);
 
