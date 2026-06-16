@@ -3,486 +3,672 @@
 <head>
 <meta charset="UTF-8">
 <title>DevQuest</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
- 
+
 <style>
-:root {
-  --bg: #060b14;
-  --card: #0d1b2a;
-  --border: #1e3a5f;
-  --accent: #00d4ff;
-  --accent2: #7c3aed;
-  --green: #00e676;
-  --red: #ff1744;
-  --text: #e2e8f0;
-  --muted: #64748b;
+
+:root{
+  --bg:#060b14;
+  --card:#0d1b2a;
+  --border:#1e3a5f;
+  --accent:#00d4ff;
+  --accent2:#7c3aed;
+  --green:#00e676;
+  --red:#ff1744;
+  --text:#e2e8f0;
+  --muted:#64748b;
 }
- 
-* { box-sizing: border-box; margin: 0; padding: 0; }
- 
-body {
-  font-family: 'Space Mono', monospace;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Space Mono', monospace;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
   background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(0,212,255,0.04) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(124,58,237,0.05) 0%, transparent 60%);
+    radial-gradient(circle at top left, rgba(0,212,255,.12), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(124,58,237,.12), transparent 35%);
 }
- 
-h1 {
-  font-family: 'Syne', sans-serif;
-  font-size: 2.4rem;
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin: 30px 0 5px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+h1{
+  font-family:'Syne', sans-serif;
+  font-size:3rem;
+  margin-bottom:10px;
+
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
- 
-.subtitle {
-  color: var(--muted);
-  font-size: 0.75rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 30px;
+
+.subtitle{
+  color:var(--muted);
+  margin-bottom:30px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-size:.8rem;
 }
- 
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 30px;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 380px;
-  box-shadow: 0 0 40px rgba(0,212,255,0.05);
+
+.card{
+  width:100%;
+  max-width:420px;
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:30px;
+
+  box-shadow:
+    0 0 40px rgba(0,212,255,.08);
 }
- 
-.card-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+
+.card-title{
+  color:var(--accent);
+
+  margin-bottom:20px;
+
+  font-family:'Syne', sans-serif;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
 }
- 
-input {
-  display: block;
-  width: 100%;
-  padding: 12px 14px;
-  margin: 8px 0;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.85rem;
-  outline: none;
-  transition: border-color 0.2s;
+
+input{
+  width:100%;
+
+  padding:14px;
+
+  margin-bottom:12px;
+
+  background:rgba(255,255,255,.03);
+
+  border:1px solid var(--border);
+
+  border-radius:10px;
+
+  color:white;
+
+  outline:none;
+
+  font-family:'Space Mono', monospace;
 }
- 
-input:focus {
-  border-color: var(--accent);
-  background: rgba(0,212,255,0.04);
+
+input:focus{
+  border-color:var(--accent);
 }
- 
-input::placeholder { color: var(--muted); }
- 
-.btn-row {
-  display: flex;
-  gap: 10px;
-  margin-top: 16px;
+
+button{
+  width:100%;
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+  font-weight:bold;
+
+  font-family:'Space Mono', monospace;
+
+  transition:.2s;
 }
- 
-button {
-  flex: 1;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.15s;
+
+button:hover{
+  transform:translateY(-2px);
 }
- 
-.btn-primary {
-  background: var(--accent);
-  color: #000;
+
+.btn-primary{
+  background:var(--accent);
+  color:black;
 }
-.btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
- 
-.btn-secondary {
-  background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--accent);
+
+.btn-secondary{
+  margin-top:10px;
+
+  background:transparent;
+
+  border:1px solid var(--accent);
+
+  color:var(--accent);
 }
-.btn-secondary:hover { background: rgba(0,212,255,0.08); }
- 
-#status {
-  margin-top: 14px;
-  font-size: 0.8rem;
-  text-align: center;
-  min-height: 20px;
-  color: var(--accent);
+
+#status{
+  text-align:center;
+
+  margin-top:15px;
+
+  min-height:20px;
+
+  font-size:.85rem;
 }
-#status.error { color: var(--red); }
- 
-/* JOGO */
-.progresso-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+
+.error{
+  color:var(--red);
 }
- 
-.progresso-label {
-  font-size: 0.75rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 2px;
+
+.progresso-row{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:18px;
 }
- 
-.placar-badges {
-  display: flex;
-  gap: 8px;
-  font-size: 0.8rem;
+
+.badge-ok{
+  color:var(--green);
 }
- 
-.badge-ok { color: var(--green); }
-.badge-err { color: var(--red); }
- 
-.pergunta-texto {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin: 16px 0 20px;
-  line-height: 1.4;
-  min-height: 60px;
+
+.badge-err{
+  color:var(--red);
 }
- 
-#opcoes {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 16px;
+
+.pergunta-texto{
+  font-size:1.2rem;
+  line-height:1.5;
+  margin-bottom:20px;
+  min-height:70px;
+
+  font-family:'Syne', sans-serif;
 }
- 
-.opcao-btn {
-  width: 100%;
-  padding: 13px 16px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  color: var(--text);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.85rem;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.15s;
-  flex: none;
+
+#opcoes{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
- 
-.opcao-btn:hover:not(:disabled) {
-  border-color: var(--accent);
-  background: rgba(0,212,255,0.06);
-  transform: translateX(4px);
+
+.opcao-btn{
+  background:rgba(255,255,255,.03);
+
+  border:1px solid var(--border);
+
+  color:white;
+
+  text-align:left;
+
+  padding:14px;
+
+  border-radius:10px;
 }
- 
-.opcao-btn.correta {
-  border-color: var(--green) !important;
-  background: rgba(0,230,118,0.1) !important;
-  color: var(--green);
+
+.opcao-btn:hover{
+  border-color:var(--accent);
+  background:rgba(0,212,255,.08);
 }
- 
-.opcao-btn.errada {
-  border-color: var(--red) !important;
-  background: rgba(255,23,68,0.1) !important;
-  color: var(--red);
+
+.opcao-btn.correta{
+  background:rgba(0,230,118,.12);
+  border-color:var(--green);
+  color:var(--green);
 }
- 
-.opcao-btn:disabled { cursor: default; }
- 
-.xp-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-  font-size: 0.75rem;
-  color: var(--muted);
+
+.opcao-btn.errada{
+  background:rgba(255,23,68,.12);
+  border-color:var(--red);
+  color:var(--red);
 }
- 
-.xp-label { color: var(--accent); font-weight: 700; }
- 
-.xp-bar {
-  width: 100%;
-  height: 6px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 16px;
+
+.xp-bar{
+  width:100%;
+  height:8px;
+
+  background:rgba(255,255,255,.05);
+
+  border-radius:10px;
+
+  overflow:hidden;
+
+  margin:15px 0 25px;
 }
- 
-.xp-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  border-radius: 10px;
-  width: 0%;
-  transition: width 0.5s ease;
+
+.xp-fill{
+  height:100%;
+
+  width:0%;
+
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+
+  transition:.4s;
 }
- 
-#btnProxima {
-  display: none;
-  width: 100%;
-  margin-top: 8px;
-  background: var(--accent2);
-  color: white;
+
+#btnProxima{
+  margin-top:18px;
+
+  background:var(--accent2);
+
+  color:white;
+
+  display:none;
 }
-#btnProxima:hover { filter: brightness(1.15); }
- 
-.fim-box {
-  text-align: center;
+
+#fimBox{
+  text-align:center;
+  margin-top:20px;
 }
-.fim-box .porc {
-  font-family: 'Syne', sans-serif;
-  font-size: 3rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+#fimPorc{
+  font-size:3rem;
+
+  font-family:'Syne', sans-serif;
+
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
-.fim-box .msg {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 8px 0 20px;
-}
- 
-#btnReiniciar {
-  background: var(--accent);
-  color: #000;
-  width: 100%;
-}
+
 </style>
 </head>
- 
+
 <body>
- 
+
 <h1>⟨ DevQuest ⟩</h1>
 <p class="subtitle">Quiz de programação</p>
- 
-<!-- LOGIN / CADASTRO -->
+
+<!-- LOGIN -->
 <div class="card" id="loginBox">
+
   <p class="card-title">Acesso</p>
- 
-  <input id="nome" placeholder="Nome (só no cadastro)">
-  <input id="email" placeholder="Email" type="email">
-  <input id="senha" placeholder="Senha" type="password">
- 
-  <div class="btn-row">
-    <button class="btn-primary" onclick="login()">Entrar</button>
-    <button class="btn-secondary" onclick="cadastrar()">Cadastrar</button>
-  </div>
- 
+
+  <input id="nome" placeholder="Nome (cadastro)">
+  <input id="email" type="email" placeholder="Email">
+  <input id="senha" type="password" placeholder="Senha">
+
+  <button class="btn-primary" onclick="login()">
+    Entrar
+  </button>
+
+  <button class="btn-secondary" onclick="cadastrar()">
+    Cadastrar
+  </button>
+
   <p id="status"></p>
+
 </div>
- 
+
 <!-- JOGO -->
 <div class="card" id="jogoBox" style="display:none;">
- 
+
   <div class="progresso-row">
-    <span class="progresso-label" id="progresso">Pergunta 1 / 10</span>
-    <div class="placar-badges">
+
+    <span id="progresso">
+      Pergunta 1/10
+    </span>
+
+    <div>
       <span class="badge-ok" id="badgeAcertos">✓ 0</span>
+      &nbsp;
       <span class="badge-err" id="badgeErros">✗ 0</span>
     </div>
+
   </div>
- 
-  <div class="xp-row">
-    <span>XP</span>
-    <span class="xp-label" id="xpValor">0</span>
+
+  <div>
+    XP: <span id="xpValor">0</span>
   </div>
-  <div class="xp-bar"><div id="barraXP" class="xp-fill"></div></div>
- 
+
+  <div class="xp-bar">
+    <div id="barraXP" class="xp-fill"></div>
+  </div>
+
   <p class="pergunta-texto" id="perguntaTexto"></p>
+
   <div id="opcoes"></div>
- 
-  <button id="btnProxima" onclick="proximaPergunta()">Próxima →</button>
- 
-  <div id="fimBox" style="display:none;" class="fim-box">
-    <p class="porc" id="fimPorc"></p>
-    <p class="msg" id="fimMsg"></p>
-    <button id="btnReiniciar" onclick="reiniciar()">Jogar novamente</button>
+
+  <button id="btnProxima" onclick="proximaPergunta()">
+    Próxima →
+  </button>
+
+  <div id="fimBox" style="display:none;">
+
+    <p id="fimPorc"></p>
+
+    <p id="fimMsg"></p>
+
+    <button class="btn-primary" onclick="reiniciar()">
+      Jogar novamente
+    </button>
+
   </div>
+
 </div>
- 
+
 <script>
+
 let usuarioId;
+
 let perguntas = [];
+
 let indiceAtual = 0;
+
 let acertos = 0;
+
 let erros = 0;
- 
-function setStatus(msg, isError = false) {
+
+function setStatus(msg, erro = false){
+
   const el = document.getElementById('status');
+
   el.innerText = msg;
-  el.className = isError ? 'error' : '';
+
+  el.className = erro ? 'error' : '';
+
 }
- 
-function atualizarXP(xp) {
+
+function atualizarXP(xp){
+
   document.getElementById('xpValor').innerText = xp;
-  document.getElementById('barraXP').style.width = (xp % 100) + "%";
+
+  document.getElementById('barraXP').style.width =
+    (xp % 100) + "%";
+
 }
- 
-function atualizarPlacar() {
-  document.getElementById('badgeAcertos').innerText = `✓ ${acertos}`;
-  document.getElementById('badgeErros').innerText = `✗ ${erros}`;
+
+function atualizarPlacar(){
+
+  document.getElementById('badgeAcertos').innerText =
+    `✓ ${acertos}`;
+
+  document.getElementById('badgeErros').innerText =
+    `✗ ${erros}`;
+
 }
- 
-async function cadastrar() {
-  // BUG CORRIGIDO: era "const nome = nome.value" (conflito de variável)
-  const nome = document.getElementById('nome').value;
-  const email = document.getElementById('email').value;
-  const senha = document.getElementById('senha').value;
- 
-  if (!nome) { setStatus("Preencha o nome para cadastrar.", true); return; }
- 
-  const res = await fetch('http://localhost:3000/cadastro', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome, email, senha })
-  });
- 
-  const data = await res.json();
-  setStatus(data.mensagem, data.mensagem.includes("já") || data.mensagem.includes("Preencha"));
-}
- 
-async function login() {
-  const email = document.getElementById('email').value;
-  const senha = document.getElementById('senha').value;
- 
-  const res = await fetch('http://localhost:3000/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, senha })
-  });
- 
-  const data = await res.json();
- 
-  if (res.ok) {
-    usuarioId = data.usuario.id;
-    atualizarXP(data.usuario.xp);
-    acertos = 0; erros = 0;
-    atualizarPlacar();
- 
-    document.getElementById('loginBox').style.display = 'none';
-    document.getElementById('jogoBox').style.display = 'block';
- 
-    carregarPerguntas();
-  } else {
-    setStatus(data.mensagem, true);
+
+async function cadastrar(){
+
+  const nome =
+    document.getElementById('nome').value;
+
+  const email =
+    document.getElementById('email').value;
+
+  const senha =
+    document.getElementById('senha').value;
+
+  if(!nome || !email || !senha){
+
+    setStatus("Preencha todos os campos.", true);
+
+    return;
+
   }
+
+  try{
+
+    const res = await fetch(
+      'http://localhost:3000/cadastro',
+      {
+
+        method:'POST',
+
+        headers:{
+          'Content-Type':'application/json'
+        },
+
+        body:JSON.stringify({
+          nome,
+          email,
+          senha
+        })
+
+      }
+    );
+
+    const data = await res.json();
+
+    if(res.ok){
+
+      setStatus(data.mensagem);
+
+    }else{
+
+      setStatus(data.mensagem, true);
+
+    }
+
+  }catch{
+
+    setStatus("Erro ao conectar.", true);
+
+  }
+
 }
- 
-async function carregarPerguntas() {
-  const res = await fetch('http://localhost:3000/perguntas');
+
+async function login(){
+
+  const email =
+    document.getElementById('email').value;
+
+  const senha =
+    document.getElementById('senha').value;
+
+  try{
+
+    const res = await fetch(
+      'http://localhost:3000/login',
+      {
+
+        method:'POST',
+
+        headers:{
+          'Content-Type':'application/json'
+        },
+
+        body:JSON.stringify({
+          email,
+          senha
+        })
+
+      }
+    );
+
+    const data = await res.json();
+
+    if(res.ok){
+
+      usuarioId = data.usuario._id;
+
+      atualizarXP(data.usuario.xp);
+
+      acertos = 0;
+      erros = 0;
+
+      atualizarPlacar();
+
+      document.getElementById('loginBox').style.display =
+        'none';
+
+      document.getElementById('jogoBox').style.display =
+        'block';
+
+      carregarPerguntas();
+
+    }else{
+
+      setStatus(data.mensagem, true);
+
+    }
+
+  }catch{
+
+    setStatus("Erro ao conectar.", true);
+
+  }
+
+}
+
+async function carregarPerguntas(){
+
+  const res =
+    await fetch('http://localhost:3000/perguntas');
+
   perguntas = await res.json();
+
   indiceAtual = 0;
-  document.getElementById('fimBox').style.display = 'none';
-  document.getElementById('btnProxima').style.display = 'none';
+
   mostrarPergunta();
+
 }
- 
-function mostrarPergunta() {
+
+function mostrarPergunta(){
+
   const p = perguntas[indiceAtual];
- 
+
   document.getElementById('progresso').innerText =
-    `Pergunta ${indiceAtual + 1} / ${perguntas.length}`;
- 
-  document.getElementById('perguntaTexto').innerText = p.pergunta;
- 
-  const div = document.getElementById('opcoes');
+    `Pergunta ${indiceAtual + 1}/${perguntas.length}`;
+
+  document.getElementById('perguntaTexto').innerText =
+    p.pergunta;
+
+  const div =
+    document.getElementById('opcoes');
+
   div.innerHTML = '';
- 
+
   p.opcoes.forEach((op, i) => {
-    const btn = document.createElement('button');
+
+    const btn =
+      document.createElement('button');
+
     btn.className = 'opcao-btn';
+
     btn.innerText = op;
-    btn.onclick = () => responder(p.id, i, btn);
+
+    btn.onclick = () =>
+      responder(p.id, i, btn);
+
     div.appendChild(btn);
+
   });
- 
-  document.getElementById('btnProxima').style.display = 'none';
+
+  document.getElementById('btnProxima').style.display =
+    'none';
+
 }
- 
-async function responder(id, resposta, btn) {
-  const res = await fetch('http://localhost:3000/responder', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ usuarioId, perguntaId: id, resposta })
-  });
- 
+
+async function responder(id, resposta, btn){
+
+  const res = await fetch(
+    'http://localhost:3000/responder',
+    {
+
+      method:'POST',
+
+      headers:{
+        'Content-Type':'application/json'
+      },
+
+      body:JSON.stringify({
+
+        usuarioId,
+
+        perguntaId:id,
+
+        resposta
+
+      })
+
+    }
+  );
+
   const data = await res.json();
+
   atualizarXP(data.xp);
- 
-  document.querySelectorAll('.opcao-btn').forEach(b => b.disabled = true);
- 
-  if (data.mensagem.includes("correta")) {
+
+  document.querySelectorAll('.opcao-btn')
+    .forEach(b => b.disabled = true);
+
+  if(data.mensagem.includes("correta")){
+
     btn.classList.add('correta');
+
     acertos++;
-  } else {
+
+  }else{
+
     btn.classList.add('errada');
+
     erros++;
+
   }
- 
+
   atualizarPlacar();
-  document.getElementById('btnProxima').style.display = 'block';
+
+  document.getElementById('btnProxima').style.display =
+    'block';
+
 }
- 
-function proximaPergunta() {
+
+function proximaPergunta(){
+
   indiceAtual++;
- 
-  if (indiceAtual < perguntas.length) {
+
+  if(indiceAtual < perguntas.length){
+
     mostrarPergunta();
-  } else {
+
+  }else{
+
     mostrarFim();
+
   }
+
 }
- 
-function mostrarFim() {
+
+function mostrarFim(){
+
   const total = perguntas.length;
-  const porc = Math.round((acertos / total) * 100);
- 
-  let emoji = porc >= 80 ? "🏆" : porc >= 50 ? "👍" : "📚";
-  let msg = porc >= 80
-    ? "Excelente! Você domina o conteúdo."
-    : porc >= 50
-    ? "Bom resultado! Continue praticando."
-    : "Continue estudando, você vai melhorar!";
- 
-  document.getElementById('perguntaTexto').innerText = `${emoji} Fim do quiz!`;
+
+  const porc =
+    Math.round((acertos / total) * 100);
+
+  document.getElementById('perguntaTexto').innerText =
+    '🏆 Quiz Finalizado';
+
   document.getElementById('opcoes').innerHTML = '';
-  document.getElementById('btnProxima').style.display = 'none';
- 
-  document.getElementById('fimPorc').innerText = `${porc}%`;
-  document.getElementById('fimMsg').innerText = `${acertos} de ${total} corretas — ${msg}`;
-  document.getElementById('fimBox').style.display = 'block';
+
+  document.getElementById('btnProxima').style.display =
+    'none';
+
+  document.getElementById('fimPorc').innerText =
+    `${porc}%`;
+
+  document.getElementById('fimMsg').innerText =
+    `${acertos} de ${total} corretas`;
+
+  document.getElementById('fimBox').style.display =
+    'block';
+
 }
- 
-function reiniciar() {
-  acertos = 0; erros = 0;
+
+function reiniciar(){
+
+  acertos = 0;
+  erros = 0;
+
   atualizarPlacar();
+
   carregarPerguntas();
+
 }
+
 </script>
- 
+
 </body>
 </html>

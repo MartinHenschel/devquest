@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
+const promBundle = require('express-prom-bundle');
 
 const Usuario = require('./models/Usuario');
 
@@ -28,6 +29,18 @@ mongoose.connect('mongodb+srv://martinhensilva_db_user:123456dev@cluster0.ouvo9r
 
 app.use(express.json());
 app.use(cors());
+
+const metricsMiddleware = promBundle({
+  includeMethod: true,
+  includePath: true,
+  promClient: {
+    collectDefaultMetrics: {}
+  }
+});
+
+app.use(metricsMiddleware);
+
+app.use(metricsMiddleware);
 
 app.use(express.static('public'));
 
@@ -125,6 +138,82 @@ app.post('/cadastro', async (req, res) => {
 
     res.status(500).json({
       mensagem: 'Erro ao cadastrar usuário'
+    });
+
+  }
+
+// DELETAR USUÁRIO
+app.delete('/usuarios/:id', async (req, res) => {
+
+  try {
+
+    await Usuario.findByIdAndDelete(
+      req.params.id
+    );
+
+    res.json({
+      mensagem: 'Usuário removido'
+    });
+
+  } catch (erro) {
+
+    res.status(500).json({
+      mensagem: 'Erro ao remover usuário'
+    });
+
+  }
+
+});
+
+});
+
+// LISTAR USUÁRIOS
+app.get('/usuarios', async (req, res) => {
+
+  try {
+
+    const usuarios = await Usuario.find();
+
+    res.json(usuarios);
+
+  } catch (erro) {
+
+    res.status(500).json({
+      mensagem: 'Erro ao buscar usuários'
+    });
+
+  }
+
+});
+
+// EDITAR USUÁRIO
+app.put('/usuarios/:id', async (req, res) => {
+
+  const { nome, email, senha } = req.body;
+
+  try {
+
+    const usuarioAtualizado =
+      await Usuario.findByIdAndUpdate(
+
+        req.params.id,
+
+        {
+          nome,
+          email,
+          senha
+        },
+
+        { new: true }
+
+      );
+
+    res.json(usuarioAtualizado);
+
+  } catch (erro) {
+
+    res.status(500).json({
+      mensagem: 'Erro ao atualizar usuário'
     });
 
   }
